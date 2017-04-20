@@ -13,6 +13,15 @@ var express = require('express');
 // The Express app
 var app = express();
 
+// The webserver
+var options = {
+	key: fs.readFileSync('server.key'),
+	cert: fs.readFileSync('server.cert')
+}; // Not secure since it's self signed and browsers will warn users
+var server = https.createServer(options, app);
+
+
+
 // Serve files from public folder
 app.use(express.static('public'));
 
